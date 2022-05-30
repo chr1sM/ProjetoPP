@@ -12,19 +12,20 @@ import estg.ipp.pt.tp02_conferencesystem.interfaces.Presentation;
  *
  * @author Christopher
  */
-public class Presentations extends Participants implements Presentation {
+public class Presentations implements Presentation {
 
     private static int idCount = 0;
-    private int id, duration;
+    private int id, presentDuration;
     private String title;
     private PresentationState presentationState;
+    private Participants participants;
 
-    public Presentations(int id, int duration, String title, PresentationState presentationState, String name, String bio) {
-        super(name, bio);
+    public Presentations(int presentDuration, String title, PresentationState presentationState, Participants participants) {
         setId(++idCount);
-        this.duration = duration;
+        this.presentDuration = presentDuration;
         this.title = title;
         this.presentationState = presentationState;
+        this.participants = participants;
     }
 
     private void setId(int id) {
@@ -43,7 +44,7 @@ public class Presentations extends Participants implements Presentation {
 
     @Override
     public int getDuration() {
-        return duration;
+        return presentDuration;
     }
 
     @Override
@@ -58,7 +59,7 @@ public class Presentations extends Participants implements Presentation {
 
     @Override
     public Participant getPresenter() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return participants;
     }
 
 }

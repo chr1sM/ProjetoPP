@@ -10,15 +10,15 @@ import estg.ipp.pt.tp02_conferencesystem.interfaces.Participant;
  *
  * @author Christopher
  */
-public class Participants extends Sessions implements Participant {
+public abstract class Participants implements Participant {
 
     private static int idCount = 0;
     private int id;
-    private String name, bio;
+    private String nameParticipants, bio;
 
-    public Participants(String name, String bio) {
+    public Participants(String nameParticipants, String bio) {
         setId(++idCount);
-        this.name = name;
+        this.nameParticipants = nameParticipants;
         this.bio = bio;
     }
 
@@ -33,7 +33,7 @@ public class Participants extends Sessions implements Participant {
 
     @Override
     public String getName() {
-        return name;
+        return nameParticipants;
     }
 
     @Override
