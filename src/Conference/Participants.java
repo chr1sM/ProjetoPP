@@ -5,25 +5,39 @@
 package Conference;
 
 import estg.ipp.pt.tp02_conferencesystem.interfaces.Participant;
+
 /**
  *
  * @author Christopher
  */
 public class Participants extends Sessions implements Participant {
 
+    private static int idCount = 0;
+    private int id;
+    private String name, bio;
+
+    public Participants(String name, String bio) {
+        setId(++idCount);
+        this.name = name;
+        this.bio = bio;
+    }
+
+    private void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public int getId() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return id;
     }
 
     @Override
     public String getName() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return name;
     }
 
     @Override
     public String getBio() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return bio;
     }
-    
 }

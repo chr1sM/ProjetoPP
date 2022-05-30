@@ -5,25 +5,39 @@
 package Conference;
 
 import estg.ipp.pt.tp02_conferencesystem.interfaces.Room;
+
 /**
  *
  * @author Christopher
  */
 public class Rooms extends Conferences implements Room {
 
+    private static int idCount = 0;
+    private int id, numSeats;
+    private String name;
+
+    public Rooms(int numSeats, String name) {
+        setId(++idCount);
+        this.numSeats = numSeats;
+        this.name = name;
+    }
+
+    private void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public int getId() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return id;
     }
 
     @Override
     public String getName() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return name;
     }
 
     @Override
     public int getNumberOfSeats() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return numSeats;
     }
-    
 }

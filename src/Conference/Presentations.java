@@ -7,30 +7,48 @@ package Conference;
 import estg.ipp.pt.tp02_conferencesystem.enumerations.PresentationState;
 import estg.ipp.pt.tp02_conferencesystem.interfaces.Participant;
 import estg.ipp.pt.tp02_conferencesystem.interfaces.Presentation;
+
 /**
  *
  * @author Christopher
  */
 public class Presentations extends Participants implements Presentation {
 
+    private static int idCount = 0;
+    private int id, duration;
+    private String title;
+    private PresentationState presentationState;
+
+    public Presentations(int id, int duration, String title, PresentationState presentationState, String name, String bio) {
+        super(name, bio);
+        setId(++idCount);
+        this.duration = duration;
+        this.title = title;
+        this.presentationState = presentationState;
+    }
+
+    private void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public int getId() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return id;
     }
 
     @Override
     public String getTitle() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return title;
     }
 
     @Override
     public int getDuration() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return duration;
     }
 
     @Override
     public PresentationState getPresentationState() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return presentationState;
     }
 
     @Override
@@ -42,5 +60,5 @@ public class Presentations extends Participants implements Presentation {
     public Participant getPresenter() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }
