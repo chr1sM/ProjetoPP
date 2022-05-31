@@ -4,6 +4,7 @@
  */
 package Conference;
 
+import Enumeration.CheckIn;
 import estg.ipp.pt.tp02_conferencesystem.interfaces.Participant;
 
 /**
@@ -15,6 +16,7 @@ public abstract class Participants implements Participant {
     private static int idCount = 0;
     private int id;
     private String nameParticipants, bio;
+    private CheckIn checkIn;
 
     public Participants(String nameParticipants, String bio) {
         setId(++idCount);
@@ -22,6 +24,7 @@ public abstract class Participants implements Participant {
         this.bio = bio;
     }
 
+    
     private void setId(int id) {
         this.id = id;
     }

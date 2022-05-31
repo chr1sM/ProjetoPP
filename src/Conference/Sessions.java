@@ -21,7 +21,6 @@ public class Sessions implements Session {
 
     private static int idCount = 0;
     private static final int MAX = 5;
-    private final int maxDurPresentation = 30;
     private int id, numPresentations, numParticipants, presentationDur;
     private LocalDateTime startSession;
     private String nameSession, theme;
@@ -29,10 +28,9 @@ public class Sessions implements Session {
     private Presentation[] presentations;
     private Participant[] participants;
 
-    public Sessions(LocalDateTime String, String nameSession, String theme, Room room) {
+    public Sessions(String nameSession, String theme, Room room, LocalDateTime startSession) {
         setId(++idCount);
-        this.presentationDur = maxDurPresentation;
-        this.startSession = String;
+        this.startSession = startSession;
         this.nameSession = nameSession;
         this.theme = theme;
         this.room = room;
@@ -65,6 +63,18 @@ public class Sessions implements Session {
         return tempArray;
     }
 
+    private LocalDateTime endSession() {
+        int temp = 0;
+
+        for (int i = 0; i < numPresentations; i++) {
+            temp = temp + this.presentations[i].getDuration();
+        }
+
+        LocalDateTime endSession = startSession.plusMinutes(temp + 10);
+
+        return endSession;
+    }
+
     @Override
     public int getId() {
         return id;
@@ -77,11 +87,19 @@ public class Sessions implements Session {
 
     @Override
     public int getDuration() {
-        LocalDateTime endSession = startSession.plusHours(2);
+        int temp = 0, duration = 0;
+
+        for (int i = 0; i < numPresentations; i++) {
+            temp = temp + this.presentations[i].getDuration();
+        }
+
+        LocalDateTime endSession = startSession.plusMinutes(temp);
 
         Duration dur = Duration.between(startSession, endSession);
 
-        int duration = (int) (dur.getSeconds() / 60);
+        int total = (int) (dur.toSecondsPart() / 60);
+
+        duration = total + temp + 10;
 
         return duration;
     }
@@ -126,12 +144,23 @@ public class Sessions implements Session {
 
     @Override
     public void removePresentation(int i) throws SessionException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
+        if (i > this.numPresentations) {
+            //execeção
+        }
+
+        for (int pos = 0; pos < this.numPresentations - 1; pos++) {
+            if (this.presentations[pos].getId() == i) {
+                this.presentations[pos] = this.presentations[pos + 1];
+            }
+        }
+        this.presentations[--this.numPresentations] = null;
+
     }
 
     @Override
     public Presentation getPresentation(int i) throws SessionException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return this.presentations[i - 1];
     }
 
     @Override
@@ -180,4 +209,14 @@ public class Sessions implements Session {
         return numPresentations;
     }
 
+    @Override
+    public String toString() {
+        String s = "";
+        for (Presentation i : presentations) {
+            if (i != null) {
+                s += i.toString();
+            }
+        }
+        return "\n\tSessao " + this.getId() + ": " + this.getSessionTheme() + " (Sala " + room.getId() + ": " + this.getStartTime().toLocalTime() + " - " + this.endSession().toLocalTime() + ")" + s;
+    }
 }

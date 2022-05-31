@@ -62,4 +62,8 @@ public class Presentations implements Presentation {
         return participant;
     }
 
+    @Override
+    public String toString() {
+        return "\n\t\t" + title;
+    }
 }
