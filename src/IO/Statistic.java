@@ -5,6 +5,7 @@
 package IO;
 
 import estg.ipp.pt.tp02_conferencesystem.io.interfaces.Statistics;
+
 /**
  *
  * @author Christopher
@@ -13,12 +14,12 @@ public class Statistic implements Statistics {
 
     @Override
     public String getDescription() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "A media e: " + getValue();
     }
 
     @Override
     public double getValue() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

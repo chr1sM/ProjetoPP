@@ -21,7 +21,7 @@ public class Sessions implements Session {
 
     private static int idCount = 0;
     private static final int MAX = 5;
-    private int id, numPresentations, numParticipants, presentationDur;
+    private int id, numPresentations, numParticipants, presentationDur = 30;
     private LocalDateTime startSession;
     private String nameSession, theme;
     private Room room;
@@ -34,6 +34,7 @@ public class Sessions implements Session {
         this.nameSession = nameSession;
         this.theme = theme;
         this.room = room;
+        this.presentationDur = presentationDur;
         this.presentations = new Presentation[MAX];
         this.participants = new Participant[this.room.getNumberOfSeats()];
     }
