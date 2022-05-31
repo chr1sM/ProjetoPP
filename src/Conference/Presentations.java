@@ -18,14 +18,14 @@ public class Presentations implements Presentation {
     private int id, presentDuration;
     private String title;
     private PresentationState presentationState;
-    private Participants participants;
+    private Participant participant;
 
-    public Presentations(int presentDuration, String title, PresentationState presentationState, Participants participants) {
+    public Presentations(int presentDuration, String title, Participant participant) {
         setId(++idCount);
         this.presentDuration = presentDuration;
         this.title = title;
-        this.presentationState = presentationState;
-        this.participants = participants;
+        this.presentationState = PresentationState.NOT_PRESENTED;
+        this.participant = participant ;
     }
 
     private void setId(int id) {
@@ -54,12 +54,12 @@ public class Presentations implements Presentation {
 
     @Override
     public void setPresented() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.presentationState = PresentationState.PRESENTED;
     }
 
     @Override
     public Participant getPresenter() {
-        return participants;
+        return participant;
     }
 
 }

@@ -4,7 +4,6 @@
  */
 package Conference;
 
-
 import estg.ipp.pt.tp02_conferencesystem.enumerations.ConferenceState;
 import estg.ipp.pt.tp02_conferencesystem.exceptions.ConferenceException;
 import estg.ipp.pt.tp02_conferencesystem.interfaces.Conference;
@@ -18,31 +17,50 @@ import java.time.LocalDateTime;
  *
  * @author Christopher
  */
-public abstract class Conferences implements Conference {
+public class Conferences implements Conference {
+
+    private String conferenceName, field;
+    private ConferenceState conferenceState;
+    private int year, numParticipantsSession, numSessionRom;
+    private Session session;
+    private Room room;
+
+    public Conferences(String conferenceName, String field, ConferenceState conferenceState, int year, Session session, Room room) {
+        this.conferenceName = conferenceName;
+        this.field = field;
+        this.conferenceState = conferenceState;
+        this.year = year;
+        this.session = session;
+        this.room = room;
+    }
 
     @Override
     public String getName() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return conferenceName;
     }
 
     @Override
     public String getField() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return field;
     }
 
     @Override
     public ConferenceState getState() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return conferenceState;
     }
 
     @Override
     public void changeState() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(conferenceState.equals(ConferenceState.ON_EDITING)){
+            conferenceState = ConferenceState.IN_PROGRESS;
+        }else{
+            conferenceState = ConferenceState.FINISHED;
+        }
     }
 
     @Override
     public int getYear() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return year;
     }
 
     @Override
@@ -120,5 +138,4 @@ public abstract class Conferences implements Conference {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    
 }

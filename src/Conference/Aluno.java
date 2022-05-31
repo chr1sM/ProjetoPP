@@ -33,6 +33,9 @@ public class Aluno extends Participants{
     public void setAnoLetivo(String anoLetivo) {
         this.anoLetivo = anoLetivo;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return super.toString() + "Aluno:\n" + "Curso: " + curso + ", Ano Letivo: " + anoLetivo;
+    }
 }

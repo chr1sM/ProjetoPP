@@ -40,4 +40,24 @@ public abstract class Participants implements Participant {
     public String getBio() {
         return bio;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof Participants)) {
+            return false;
+        }
+        final Participants other = (Participants) obj;
+        return this.id == other.id;
+    }
+
+    @Override
+    public String toString() {
+        return "Participants:\n" + "ID: " + id + ", Participant Name: " + nameParticipants + ", Bio: " + bio;
+    }
 }

@@ -10,7 +10,7 @@ import estg.ipp.pt.tp02_conferencesystem.interfaces.Room;
  *
  * @author Christopher
  */
-public class Rooms extends Conferences implements Room {
+public class Rooms implements Room {
 
     private static int idCount = 0;
     private int id, numSeats;

@@ -36,6 +36,9 @@ public class Professor extends Participants{
     public void setGrau(GrauEscolaridade grau) {
         this.grau = grau;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return super.toString() + "Professor:\n" + "Expert: " + expert + ", Grau: " + grau;
+    }
 }
